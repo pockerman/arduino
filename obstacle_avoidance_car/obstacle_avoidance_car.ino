@@ -12,34 +12,26 @@
 //motor is equivelant to IN1 for the right motor
 //i.e corresponding to dir1 as in right motor 
 
-TwoMotorsVehicle vehicle(2,3,10,5,4,9);
+//NewPing sensor handling
+//TRIG PIN 7
+//ECHO PIN 11
+//MAX DIST in 400 cm 
+
+TwoMotorsVehicle vehicle(2,3,10,5,4,9,7,11,400);
 
 
-//=========================================
-//SENSOR
-
-//the sensor
-const unsigned int PING_SENSOR_IO_PIN = 7;
-
-//echo pin
-const int ECHO_PIN = 11;
-
-//maximum distance of the sensor
-const unsigned int MAX_DIST = 200;
-NewPing sensor(PING_SENSOR_IO_PIN,ECHO_PIN,MAX_DIST);
-//========================================
 
 //========================================
 //SERVO
-Servo servo;
+//Servo servo;
 
 void setup() {
-  // put your setup code here, to run once:
+  
   Serial.begin(9600);
 }
 
 void loop() {
-  vehicle.move_forward();
+  vehicle.execute();
 
 }
 
