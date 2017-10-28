@@ -21,9 +21,6 @@ public:
   //enable the motor
   void enable();
 
-  //start the motor at the given speed
-  //void start(int speed);
-
   //stop the motor
   void stop();
 

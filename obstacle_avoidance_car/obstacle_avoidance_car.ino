@@ -31,7 +31,14 @@ void setup() {
 }
 
 void loop() {
+
+  delayMicroseconds(10);
   vehicle.execute();
+  
+  //float distance = vehicle.sense_obstacle();
+  //Serial.print(distance);
+  //Serial.print(" cm\n");
+  //delay(500);
 
 }
 

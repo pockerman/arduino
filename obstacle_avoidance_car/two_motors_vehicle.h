@@ -1,7 +1,12 @@
+
+
 #ifndef TWO_MOTORS_VEHICLE_H
 #define TWO_MOTORS_VEHICLE_H
+#include <Arduino.h>
 #include "motor.h"
 #include <NewPing.h>
+
+
 
 
 class TwoMotorsVehicle
@@ -18,20 +23,27 @@ public:
   //move forward
   void move_forward(int speed=Motor::default_max_speed());
 
+  //turn the vehicle to the left
   void turn_left();
 
+  //turn the vehicle to the right
   void turn_right();
 
   //stops both motors
   void stop();
 
+  // set motors to off
   void off();
 
+  //enable the motors
   void enable();
 
 
   //execute the vehicle: sense obstacle-->decide what--->execute
   void execute();
+
+  //senses obstacle and returns the distance from it
+  float sense_obstacle();
 
 private :
 
@@ -44,7 +56,8 @@ private :
   //handles the sound sensor
   NewPing sensor_;
 
-  //minimum distance the sensor cannot sense
-  const float MIN_DIST;
+  //minimum distance for obstacle closeness
+  //by default it is set to 25 cm
+  const float  MIN_OBST_DIST;
 };
 #endif
