@@ -1,3 +1,3 @@
 # arduino
 
-Some toy programs for Arduino UNO. 
+Some Arduino based projects with emphasis on mobile robotics
