@@ -22,7 +22,7 @@ void setup() {
   }
 
   //initialize the interrupt
-  attachInterrupt(0, ledOnOff, RISING);
+  attachInterrupt(0, led_on_off, RISING);
 
 }
 
@@ -47,7 +47,7 @@ void loop() {
   }
 }
 
-void ledOnOff() {
+void led_on_off() {
   static unsigned long lastMillis = 0;
   unsigned long newMillis = millis();
 
