@@ -9,6 +9,8 @@ const int TRIG_PIN = 10;
 const int ECHO_PIN = 13;
 float duration = 0.0f;
 float distance = 0.0f;
+
+
 void setup() {
   // put your setup code here, to run once:
 
