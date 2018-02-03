@@ -1,7 +1,8 @@
 
 # Test ISR for two motors
 
-Shows how to use Arduino's ISR to control two motors.
+Shows how to use Arduino's ISR to control two motors. The sketch has been extracted from the following video:
+https://www.youtube.com/watch?v=oQQpAACa3ac&t=3s
 
 ## Topics
 
