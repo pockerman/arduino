@@ -2,4 +2,4 @@
 
 Arduino sketches
 
-- Using the TMP36 temperature sensor
+- <a href="notes/tmp36_sensor_I.ipynb">Using the TMP36 temperature sensor</a>
