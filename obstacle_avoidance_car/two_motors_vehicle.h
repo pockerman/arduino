@@ -18,10 +18,10 @@ public:
   TwoMotorsVehicle(int rdir1,int rdir2,int renable,
                    int ldir1,int ldir2,int lenable,
                    int trig_pin,int echo_pin, int max_dist,
-                   int max_speed=Motor::default_max_speed());
+                   int max_speed);
 
   //move forward
-  void move_forward(int speed=Motor::default_max_speed());
+  void move_forward(int speed);
 
   //turn the vehicle to the left
   void turn_left();
@@ -47,11 +47,7 @@ public:
 
 private :
 
-  //right motor
-  Motor r_;
-
-  //left motor
-  Motor l_;
+  
 
   //handles the sound sensor
   NewPing sensor_;

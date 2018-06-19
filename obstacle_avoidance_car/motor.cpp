@@ -2,61 +2,76 @@
 #include <Arduino.h>
 #include <math.h>
 
-
-Motor::Motor(int dir1,int dir2,int enable_pin,int max_speed)
-:
-dir1_(dir1),
-dir2_(dir2),
-enable_pin_(enable_pin),
-max_speed_(max_speed),
-is_stopped_(true)
+namespace motors
 {
-  pinMode(dir1_,OUTPUT);
-  pinMode(dir2_,OUTPUT);
-  pinMode(enable_pin_,OUTPUT);
-}
 
-/*void 
-Motor::write(int dp_status,int pwmp_status){
-  digitalWrite(dir_pin_, dp_status);
-  digitalWrite(pwm_, pwmp_status);
-}*/
+  Motor::Motor(const char* name,int f_pin,int b_pin,int e_pin,int max_speed)
+  :
+  name_(name),
+  f_pin_(f_pin),
+  b_pin_(b_pin),
+  e_pin_(e_pin),
+  max_speed_(max_speed),
+  is_stopped_(true)
+  {
+    //these are output from the Arduino and into
+    //the L298N bridge
+    pinMode(f_pin_,OUTPUT);
+    pinMode(b_pin_,OUTPUT);
+    pinMode(e_pin_,OUTPUT);
+  }
 
-void 
-Motor::stop(){
 
-  digitalWrite(dir1_,LOW);
-  digitalWrite(dir2_,LOW);
-  is_stopped_ = true;
-}
 
-void 
-Motor::enable(){
-  digitalWrite(enable_pin_,HIGH);
-}
-
-void 
-Motor::off(){
-  digitalWrite(enable_pin_,LOW);
-}
-
-/*void 
-Motor::start(int speed){
-
-  int type = HIGH;
-
+  void 
+  Motor::stop(){
   
+    digitalWrite(f_pin_,LOW);
+    digitalWrite(b_pin_,LOW);
+    is_stopped_ = true;
+  }
 
-  //speed should be in the range [0,max_speed]
-  speed = abs(speed % (max_speed_+1));
+  void 
+  Motor::enable(){
+    digitalWrite(e_pin_,HIGH);
+  }
+  
+  void 
+  Motor::disable(){
+    digitalWrite(e_pin_,LOW);
+  }
 
-  digitalWrite(dir_pin_,type);
-  analogWrite(pwm_,speed);
-}*/
 
-void 
-Motor::forward(){
-  digitalWrite(dir1_,HIGH);
-  digitalWrite(dir2_,LOW);
+
+  void 
+  Motor::forward(int speed){
+    
+    digitalWrite(f_pin_,HIGH);
+    digitalWrite(b_pin_,LOW);
+
+    //here speed specifies the duty cycle and should be
+    //between [0,255] 0 = always off, 255 = always on
+
+    if(speed < 0)
+      speed = 0;
+    if(speed > 255)
+      speed = 255;
+    
+    analogWrite(e_pin_,speed);
+  }
+
+  void 
+  Motor::backward(int speed){
+    digitalWrite(f_pin_,LOW);
+    digitalWrite(b_pin_,HIGH);
+
+    if(speed < 0)
+      speed = 0;
+    if(speed > 255)
+      speed = 255;
+    
+    analogWrite(e_pin_,speed);
+  }
 }
+
 
