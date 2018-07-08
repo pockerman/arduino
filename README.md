@@ -1,6 +1,14 @@
-# arduino
+# Arduino
 
-Arduino sketches
+Electronics projects to learn Arduino  and how-to
+
+---
+  **REMARK**
+  
+  Some of the notebooks contain images and/or videos. These artifacts may not be displayed properly if you browse the relevant notebooks via GitHub. 
+
+
+---
 
 
 ## Contents
