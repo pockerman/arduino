@@ -21,3 +21,7 @@ Electronics projects to learn Arduino  and how-to
 - **Item:** <a href="notebooks/lab_2_three_color_traffic_light.ipynb">Lab2 Three-Colour Traffic Light</a>
 - **Item:** <a href="notebooks/useful_tools.ipynb">Useful Tools</a>
 - **Item:** <a href="#">Using the TMP36 temperature sensor</a>
+
+## Books
+
+## Links
