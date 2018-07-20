@@ -4,11 +4,7 @@
  * sound to sense obstacles
  */
 
-#include <Servo.h>
 #include <NewPing.h>
-
-// Include the TimerOne Library from Paul Stoffregen
-#include "TimerOne.h"
 
 #include "motor.h"
 
@@ -174,7 +170,8 @@ void turn_right(int speed){
  
 void setup() {
 
-  Serial.begin(9600);
+  //ENABLE FOR TESTING
+  //Serial.begin(9600);
   
   // Attach the Interrupts to their ISR's
   attachInterrupt(digitalPinToInterrupt (MOTOR_A), isr_countA, RISING);  // Increase counter A when speed sensor pin goes High
@@ -191,10 +188,8 @@ void sense(){
 
 void think(){
 
-  Serial.print("distance-SAFETY_DISTANCE:");
-  Serial.println(distance-SAFETY_DISTANCE);
-
   //decision is made based on distance
+  
   if(distance-SAFETY_DISTANCE < 1.0e-3){
 
     current_action = MOVE_BWRD; 
@@ -248,10 +243,8 @@ void act(){
 
 void loop() {
 
-
-    //Serial.print("Current distance:");
-    //Serial.println(distance);
-
+    /*
+     * ENABLE FOR TESTING
     if(current_action == MOVE_FRWD){
 
         Serial.print("Current distance:");
@@ -278,53 +271,11 @@ void loop() {
       Serial.println("Action:  TURN_RIGHT");
     
     }
+    */
 
     sense();
     think();
     act();
-
-  /*
-  //figure out the distance from obstacle
-  float dist = sonar.ping_cm();
-
-  //If the distance from the obstacle we sense
-  //is smaller than the safety distance then move back
-  //turn left and then turn right
-  if(dist-SAFETY_DISTANCE < 0.0){
-
-    move_backward(50.0,MAX_SPEED);
-    delay(1000);
-
-    turn_left(TURN_SPEED);
-    //delay(500);
-    
-    turn_right(TURN_SPEED);
-    //delay(500);
-   
-  }
-  
-  else{
-
-    while(dist-SAFETY_DISTANCE > 0.0){
-
-      if(dist > MAX_DIST){
-          //move forward
-          move_forward(100.0,MAX_SPEED);
-          dist = sonar.ping_cm(); 
-      }
-      else{
-
-          move_forward(dist-SAFETY_DISTANCE,MAX_SPEED);
-          dist = sonar.ping_cm();  
-      }
-    } 
-  }
-
-   //wait for 0.5 seconds
-  delay(500);
-  stop_motors();
-
-  */
 
 }
 
